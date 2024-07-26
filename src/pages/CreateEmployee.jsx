@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import DateTimePickerComponent from "../components/DateTimePickerComponent";
-import DropdownComponent from "../components/DropdownComponent";
+import DatePickerComponent from "../components/DatePickerComponent";
+// import DropdownComponent from "../components/DropdownComponent";
 import ModalComponent from "../components/ModalComponent";
 import { departments } from "../data/departments";
 import { states } from "../data/states";
 import { addEmployee } from "../store";
+import Select from "@fgael/react-select";
+import "./createEmployee.css";
 
 const CreateEmployee = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,11 +17,22 @@ const CreateEmployee = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [selectedState, setSelectedState] = useState(null);
   const [zipCode, setZipCode] = useState("");
-  const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+
+  const handleDepartmentsChange = (value) => {
+    setSelectedDepartment(value);
+    console.log("Selected value:", value);
+  };
+
+  const handleStatesChange = (value) => {
+    setSelectedState(value);
+    console.log("Selected value:", value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,14 +79,11 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label>Date of Birth</label>
-          <DateTimePickerComponent
-            date={dateOfBirth}
-            setDate={setDateOfBirth}
-          />
+          <DatePickerComponent date={dateOfBirth} setDate={setDateOfBirth} />
         </div>
         <div>
           <label>Start Date</label>
-          <DateTimePickerComponent date={startDate} setDate={setStartDate} />
+          <DatePickerComponent date={startDate} setDate={setStartDate} />
         </div>
         <div>
           <label>Street</label>
@@ -95,13 +105,11 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label>State</label>
-          <DropdownComponent
-            options={states.map((state) => ({
-              value: state.abbreviation,
-              label: state.name,
-            }))}
-            value={selectedState}
-            onChange={setSelectedState}
+          <Select
+            options={states}
+            valueKey="abbreviation"
+            displayKey="name"
+            onChange={handleStatesChange}
           />
         </div>
         <div>
@@ -115,10 +123,10 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label>Department</label>
-          <DropdownComponent
+          <Select
             options={departments}
-            value={selectedDepartment}
-            onChange={setSelectedDepartment}
+            valueKey="value"
+            onChange={handleDepartmentsChange}
           />
         </div>
         <button type="submit">Save</button>
