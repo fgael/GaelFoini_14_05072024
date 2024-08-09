@@ -53,33 +53,50 @@ const DataTableComponent = ({ columns, data }) => {
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px" }}
+        style={{ marginBottom: "10px", padding: "5px", width: "200px" }}
       />
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="data-table">
         <thead>
-          {headerGroups.map((headerGroup, headerGroupIndex) => (
-            <tr key={headerGroupIndex} {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, columnIndex) => (
-                <th key={columnIndex} {...column.getHeaderProps()}>
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, rowIndex) => {
-            prepareRow(row);
+          {headerGroups.map((headerGroup) => {
+            const headerGroupProps = headerGroup.getHeaderGroupProps();
             return (
-              <tr key={rowIndex} {...row.getRowProps()}>
-                {row.cells.map((cell, cellIndex) => (
-                  <td key={cellIndex} {...cell.getCellProps()}>
-                    {cell.render("Cell")}
-                  </td>
-                ))}
+              <tr key={headerGroupProps.key} {...headerGroupProps}>
+                {headerGroup.headers.map((column) => {
+                  const columnProps = column.getHeaderProps();
+                  return (
+                    <th key={columnProps.key} {...columnProps}>
+                      {column.render("Header")}
+                    </th>
+                  );
+                })}
               </tr>
             );
           })}
+        </thead>
+
+        <tbody {...getTableBodyProps()}>
+          {page.length > 0 ? (
+            page.map((row) => {
+              prepareRow(row);
+              const rowProps = row.getRowProps();
+              return (
+                <tr key={rowProps.key} {...rowProps}>
+                  {row.cells.map((cell) => {
+                    const { key, ...restCellProps } = cell.getCellProps();
+                    return (
+                      <td key={key} {...restCellProps}>
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan={columns.length}>No data available</td>
+            </tr>
+          )}
         </tbody>
       </table>
 

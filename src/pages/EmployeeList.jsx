@@ -24,8 +24,8 @@ const EmployeeList = () => {
   return (
     <div>
       <h1>Employee List</h1>
-      <DataTableComponent columns={columns} data={data} />
       <Link to="/">Home</Link>
+      <DataTableComponent columns={columns} data={data} />
     </div>
   );
 };

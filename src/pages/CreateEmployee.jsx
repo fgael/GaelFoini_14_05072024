@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Select from "@fgael/react-select";
 import DatePickerComponent from "../components/DatePickerComponent";
-// import DropdownComponent from "../components/DropdownComponent";
 import ModalComponent from "../components/ModalComponent";
 import { departments } from "../data/departments";
 import { states } from "../data/states";
 import { addEmployee } from "../store";
-import Select from "@fgael/react-select";
-import "./createEmployee.css";
 
 const CreateEmployee = () => {
   const [firstName, setFirstName] = useState("");
@@ -21,8 +19,12 @@ const CreateEmployee = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedState, setSelectedState] = useState(
+    states[0]?.abbreviation || ""
+  );
+  const [selectedDepartment, setSelectedDepartment] = useState(
+    departments[0] || ""
+  );
 
   const handleDepartmentsChange = (value) => {
     setSelectedDepartment(value);
@@ -40,8 +42,8 @@ const CreateEmployee = () => {
     const newEmployee = {
       firstName,
       lastName,
-      dateOfBirth: dateOfBirth.toISOString().split("T")[0],
-      startDate: startDate.toISOString().split("T")[0],
+      dateOfBirth: dateOfBirth.toISOString(),
+      startDate: startDate.toISOString(),
       street,
       city,
       state: selectedState,
