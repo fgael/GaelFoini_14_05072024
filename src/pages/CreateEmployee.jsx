@@ -28,12 +28,10 @@ const CreateEmployee = () => {
 
   const handleDepartmentsChange = (value) => {
     setSelectedDepartment(value);
-    console.log("Selected value:", value);
   };
 
   const handleStatesChange = (value) => {
     setSelectedState(value);
-    console.log("Selected value:", value);
   };
 
   const handleSubmit = (e) => {

@@ -58,13 +58,14 @@ const DataTableComponent = ({ columns, data }) => {
       <table {...getTableProps()} className="data-table">
         <thead>
           {headerGroups.map((headerGroup) => {
-            const headerGroupProps = headerGroup.getHeaderGroupProps();
+            const { key, ...headerGroupProps } =
+              headerGroup.getHeaderGroupProps();
             return (
-              <tr key={headerGroupProps.key} {...headerGroupProps}>
+              <tr key={key} {...headerGroupProps}>
                 {headerGroup.headers.map((column) => {
-                  const columnProps = column.getHeaderProps();
+                  const { key, ...columnProps } = column.getHeaderProps();
                   return (
-                    <th key={columnProps.key} {...columnProps}>
+                    <th key={key} {...columnProps}>
                       {column.render("Header")}
                     </th>
                   );
@@ -78,13 +79,13 @@ const DataTableComponent = ({ columns, data }) => {
           {page.length > 0 ? (
             page.map((row) => {
               prepareRow(row);
-              const rowProps = row.getRowProps();
+              const { key, ...rowProps } = row.getRowProps();
               return (
-                <tr key={rowProps.key} {...rowProps}>
+                <tr key={key} {...rowProps}>
                   {row.cells.map((cell) => {
-                    const { key, ...restCellProps } = cell.getCellProps();
+                    const { key, ...cellProps } = cell.getCellProps();
                     return (
-                      <td key={key} {...restCellProps}>
+                      <td key={key} {...cellProps}>
                         {cell.render("Cell")}
                       </td>
                     );
