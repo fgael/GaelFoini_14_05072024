@@ -6,8 +6,15 @@ const ModalComponent = ({ isOpen, onRequestClose, content }) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      appElement={document.getElementById("root")} // Set app element directly
+      className="modal-content"
     >
+      <button
+        className="modal-close-button"
+        onClick={onRequestClose}
+        aria-label="Close modal"
+      >
+        &times;
+      </button>
       {content}
     </Modal>
   );
