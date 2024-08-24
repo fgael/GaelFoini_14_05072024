@@ -39,15 +39,27 @@ form div {
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin: 5px 0;
   font-weight: bold;
 }
 
 input[type="text"] {
-  width: 100%;
+  width: 97%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+button[type="submit"] {
+  margin-top: 14px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Styles for the Select component */
