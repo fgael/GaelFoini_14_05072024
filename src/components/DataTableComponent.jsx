@@ -25,7 +25,6 @@ const DataTableComponent = ({ columns, data }) => {
     headerGroups,
     page,
     prepareRow,
-    // Pagination props
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -47,25 +46,27 @@ const DataTableComponent = ({ columns, data }) => {
   );
 
   return (
-    <div>
+    <div className="data-table-container">
       <input
+        id="search"
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px", width: "200px" }}
+        className="search-input"
+        aria-label="Search"
       />
-      <table {...getTableProps()} className="data-table">
-        <thead>
+      <table {...getTableProps()} className="data-table" role="table">
+        <thead role="rowgroup">
           {headerGroups.map((headerGroup) => {
             const { key, ...headerGroupProps } =
               headerGroup.getHeaderGroupProps();
             return (
-              <tr key={key} {...headerGroupProps}>
+              <tr key={key} {...headerGroupProps} role="row">
                 {headerGroup.headers.map((column) => {
                   const { key, ...columnProps } = column.getHeaderProps();
                   return (
-                    <th key={key} {...columnProps}>
+                    <th key={key} {...columnProps} role="columnheader">
                       {column.render("Header")}
                     </th>
                   );
@@ -75,17 +76,17 @@ const DataTableComponent = ({ columns, data }) => {
           })}
         </thead>
 
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()} role="rowgroup">
           {page.length > 0 ? (
             page.map((row) => {
               prepareRow(row);
               const { key, ...rowProps } = row.getRowProps();
               return (
-                <tr key={key} {...rowProps}>
+                <tr key={key} {...rowProps} role="row">
                   {row.cells.map((cell) => {
                     const { key, ...cellProps } = cell.getCellProps();
                     return (
-                      <td key={key} {...cellProps}>
+                      <td key={key} {...cellProps} role="cell">
                         {cell.render("Cell")}
                       </td>
                     );
@@ -95,46 +96,77 @@ const DataTableComponent = ({ columns, data }) => {
             })
           ) : (
             <tr>
-              <td colSpan={columns.length}>No data available</td>
+              <td colSpan={columns.length} role="cell">
+                No data available
+              </td>
             </tr>
           )}
         </tbody>
       </table>
 
-      <div>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
-        </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button
-          onClick={() => gotoPage(pageOptions.length - 1)}
-          disabled={!canNextPage}
-        >
-          {">>"}
-        </button>{" "}
-        <span>
+      <div
+        className="data-table-pagination"
+        role="navigation"
+        aria-label="Pagination controls"
+      >
+        <div className="pagination-controls">
+          <button
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+            aria-label="Go to first page"
+            className="pagination-button"
+          >
+            {"<<"}
+          </button>
+          <button
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+            aria-label="Go to previous page"
+            className="pagination-button"
+          >
+            {"<"}
+          </button>
+          <button
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+            aria-label="Go to next page"
+            className="pagination-button"
+          >
+            {">"}
+          </button>
+          <button
+            onClick={() => gotoPage(pageOptions.length - 1)}
+            disabled={!canNextPage}
+            aria-label="Go to last page"
+            className="pagination-button"
+          >
+            {">>"}
+          </button>
+        </div>
+        <span className="pagination-info">
           Page{" "}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>{" "}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 25, 50, 100].map((size) => (
-            <option key={size} value={size}>
-              Show {size}
-            </option>
-          ))}
-        </select>
+          </strong>
+        </span>
+        <div className="show-select">
+          <label htmlFor="pageSize">Show</label>
+          <select
+            id="pageSize"
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+            aria-label="Number of items per page"
+            className="page-size-select"
+          >
+            {[10, 25, 50, 100].map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );

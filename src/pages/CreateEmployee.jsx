@@ -66,8 +66,9 @@ const CreateEmployee = () => {
       <h2>Create Employee</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
+            id="firstName"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -75,8 +76,9 @@ const CreateEmployee = () => {
           />
         </div>
         <div>
-          <label>Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
+            id="lastName"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -84,16 +86,25 @@ const CreateEmployee = () => {
           />
         </div>
         <div>
-          <label>Date of Birth</label>
-          <DatePickerComponent date={dateOfBirth} setDate={setDateOfBirth} />
+          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <DatePickerComponent
+            id="dateOfBirth"
+            date={dateOfBirth}
+            setDate={setDateOfBirth}
+          />
         </div>
         <div>
-          <label>Start Date</label>
-          <DatePickerComponent date={startDate} setDate={setStartDate} />
+          <label htmlFor="startDate">Start Date</label>
+          <DatePickerComponent
+            id="startDate"
+            date={startDate}
+            setDate={setStartDate}
+          />
         </div>
         <div>
-          <label>Street</label>
+          <label htmlFor="street">Street</label>
           <input
+            id="street"
             type="text"
             value={street}
             onChange={(e) => setStreet(e.target.value)}
@@ -101,8 +112,9 @@ const CreateEmployee = () => {
           />
         </div>
         <div>
-          <label>City</label>
+          <label htmlFor="city">City</label>
           <input
+            id="city"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -110,7 +122,7 @@ const CreateEmployee = () => {
           />
         </div>
         <div>
-          <label>State</label>
+          <label htmlFor="state">State</label>
           <Select
             options={states}
             valueKey="abbreviation"
@@ -119,8 +131,9 @@ const CreateEmployee = () => {
           />
         </div>
         <div>
-          <label>Zip Code</label>
+          <label htmlFor="zipCode">Zip Code</label>
           <input
+            id="zipCode"
             type="text"
             value={zipCode}
             onChange={handleZipCodeChange}
@@ -129,14 +142,16 @@ const CreateEmployee = () => {
           />
         </div>
         <div>
-          <label>Department</label>
+          <label htmlFor="department">Department</label>
           <Select
             options={departments}
             valueKey="value"
             onChange={handleDepartmentsChange}
           />
         </div>
-        <button type="submit">Save</button>
+        <button type="submit" aria-label="Save employee details">
+          Save
+        </button>
       </form>
       <ModalComponent
         isOpen={isModalOpen}

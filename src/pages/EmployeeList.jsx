@@ -40,7 +40,9 @@ const EmployeeList = () => {
   return (
     <div>
       <h1>Employee List</h1>
-      <Link to="/">Home</Link>
+      <Link to="/" className="home-link">
+        Home
+      </Link>
       <DataTableComponent columns={columns} data={data} />
     </div>
   );
