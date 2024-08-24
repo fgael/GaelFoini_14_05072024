@@ -34,6 +34,12 @@ const CreateEmployee = () => {
     setSelectedState(value);
   };
 
+  const handleZipCodeChange = (e) => {
+    // Remove non-digit characters
+    const value = e.target.value.replace(/\D/g, "");
+    setZipCode(value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -117,8 +123,9 @@ const CreateEmployee = () => {
           <input
             type="text"
             value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            onChange={handleZipCodeChange}
             required
+            pattern="\d*"
           />
         </div>
         <div>
