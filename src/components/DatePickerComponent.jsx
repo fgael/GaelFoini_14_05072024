@@ -8,7 +8,9 @@ const DatePickerComponent = ({ date, setDate }) => {
 };
 
 DatePickerComponent.propTypes = {
+  // 'date' should be a Date object and is required
   date: PropTypes.instanceOf(Date).isRequired,
+  // 'setDate' should be a function to set the selected date and is required
   setDate: PropTypes.func.isRequired,
 };
 

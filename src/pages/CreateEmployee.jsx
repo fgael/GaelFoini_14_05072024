@@ -9,6 +9,7 @@ import { states } from "../data/states";
 import { addEmployee } from "../store";
 
 const CreateEmployee = () => {
+  // State hooks for managing form input values
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
@@ -19,6 +20,7 @@ const CreateEmployee = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
+  // State hooks for managing selected options in dropdowns
   const [selectedState, setSelectedState] = useState(
     states[0]?.abbreviation || ""
   );
@@ -26,14 +28,17 @@ const CreateEmployee = () => {
     departments[0] || ""
   );
 
+  // Handler for department dropdown change
   const handleDepartmentsChange = (value) => {
     setSelectedDepartment(value);
   };
 
+  // Handler for state dropdown change
   const handleStatesChange = (value) => {
     setSelectedState(value);
   };
 
+  // Handler to manage changes in the zip code input
   const handleZipCodeChange = (e) => {
     // Remove non-digit characters
     const value = e.target.value.replace(/\D/g, "");
@@ -41,8 +46,10 @@ const CreateEmployee = () => {
   };
 
   const handleSubmit = (e) => {
+    // Prevent default form submission behavior
     e.preventDefault();
 
+    // Create a new employee object with current form state values
     const newEmployee = {
       firstName,
       lastName,
@@ -55,16 +62,20 @@ const CreateEmployee = () => {
       department: selectedDepartment,
     };
 
+    // Dispatch the action to add a new employee to the store
     dispatch(addEmployee(newEmployee));
+    // Open the modal to confirm employee creation
     setIsModalOpen(true);
   };
 
   return (
     <div>
       <h1>HRnet</h1>
+      {/* Link to view current employees */}
       <Link to="employee-list">View Current Employees</Link>
       <h2>Create Employee</h2>
       <form onSubmit={handleSubmit}>
+        {/* Input fields for employee information */}
         <div>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -87,6 +98,7 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label htmlFor="dateOfBirth">Date of Birth</label>
+          {/* Date picker component for date of birth */}
           <DatePickerComponent
             id="dateOfBirth"
             date={dateOfBirth}
@@ -95,6 +107,7 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label htmlFor="startDate">Start Date</label>
+          {/* Date picker component for start date */}
           <DatePickerComponent
             id="startDate"
             date={startDate}
@@ -123,6 +136,7 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label htmlFor="state">State</label>
+          {/* Select component for choosing a state */}
           <Select
             options={states}
             valueKey="abbreviation"
@@ -143,16 +157,19 @@ const CreateEmployee = () => {
         </div>
         <div>
           <label htmlFor="department">Department</label>
+          {/* Select component for choosing a department */}
           <Select
             options={departments}
             valueKey="value"
             onChange={handleDepartmentsChange}
           />
         </div>
+        {/* Button to submit the form */}
         <button type="submit" aria-label="Save employee details">
           Save
         </button>
       </form>
+      {/* Modal component to confirm employee creation */}
       <ModalComponent
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
