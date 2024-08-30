@@ -65,6 +65,24 @@ button[type="submit"]:hover {
   background-color: #003a8c;
 }
 
+/* Styles for adress container */
+.address-container {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.address-container legend {
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  background: #fff;
+  padding: 0 5px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 /* Styles for the Select component */
 .select-container {
   width: 100%;

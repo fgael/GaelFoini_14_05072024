@@ -114,46 +114,49 @@ const CreateEmployee = () => {
             setDate={setStartDate}
           />
         </div>
-        <div>
-          <label htmlFor="street">Street</label>
-          <input
-            id="street"
-            type="text"
-            value={street}
-            onChange={(e) => setStreet(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="city">City</label>
-          <input
-            id="city"
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="state">State</label>
-          {/* Select component for choosing a state */}
-          <Select
-            options={states}
-            valueKey="abbreviation"
-            displayKey="name"
-            onChange={handleStatesChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="zipCode">Zip Code</label>
-          <input
-            id="zipCode"
-            type="text"
-            value={zipCode}
-            onChange={handleZipCodeChange}
-            required
-            pattern="\d*"
-          />
+        <div className="address-container">
+          <legend>Address</legend>
+          <div>
+            <label htmlFor="street">Street</label>
+            <input
+              id="street"
+              type="text"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="city">City</label>
+            <input
+              id="city"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="state">State</label>
+            {/* Select component for choosing a state */}
+            <Select
+              options={states}
+              valueKey="abbreviation"
+              displayKey="name"
+              onChange={handleStatesChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="zipCode">Zip Code</label>
+            <input
+              id="zipCode"
+              type="text"
+              value={zipCode}
+              onChange={handleZipCodeChange}
+              required
+              pattern="\d*"
+            />
+          </div>
         </div>
         <div>
           <label htmlFor="department">Department</label>
