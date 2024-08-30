@@ -32,9 +32,9 @@ Trois rapports Lighthouse sont disponibles dans le dossier suivant : [lighthouse
 
 ## Mise en place
 
-Pour pouvoir utiliser le site et accéder à toutes les fonctionnalités que propose HRnet, assurez-vous d'avoir les composants nécessaires installés :
+Pour pouvoir utiliser l'application et accéder à toutes les fonctionnalités que propose HRnet, assurez-vous d'avoir les composants nécessaires installés :
 
-- [Node.js](https://nodejs.org/en/) (version recommandée : 18.16.0)
+- [Node.js](https://nodejs.org/en/) (version recommandée : v20.15.0)
 
 ## Installation
 
