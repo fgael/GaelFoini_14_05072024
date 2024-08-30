@@ -24,7 +24,7 @@ Le projet est une application web interne, appelée HRnet, qui gère les dossier
 
 ## Rapport Lighthouse
 
-Trois rapports Lighthouse sont disponibles dans le dossier suivant : [lighthouse_reports](https://github.com/fgael/GaelFoini_14_05072024/tree/main/lighthouse_reports).
+Les rapports Lighthouse sont disponibles dans le dossier suivant : [lighthouse_reports](https://github.com/fgael/GaelFoini_14_05072024/tree/main/lighthouse_reports).
 
 - **Rapport_Lighthouse_HRnet_jQuery.json** : Rapport de performance du projet HRnet utilisant jQuery.
 - **Rapport_Lighthouse_HRnet_react_build.json** : Rapport de performance de l'application HRnet en version React build.
