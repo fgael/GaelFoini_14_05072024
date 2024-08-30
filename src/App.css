@@ -68,6 +68,7 @@ button[type="submit"]:hover {
 /* Styles for adress container */
 .address-container {
   border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 15px;
   margin: 20px 0;
   position: relative;
