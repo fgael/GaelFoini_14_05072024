@@ -28,7 +28,6 @@ Trois rapports Lighthouse sont disponibles dans le dossier suivant : [lighthouse
 
 - **Rapport_Lighthouse_HRnet_jQuery.json** : Rapport de performance du projet HRnet utilisant jQuery.
 - **Rapport_Lighthouse_HRnet_react_build.json** : Rapport de performance de l'application HRnet en version React build.
-- **Rapport_Lighthouse_HRnet_react_framework.json** : Rapport de performance de l'application HRnet en version React locale (framework).
 
 ## Mise en place
 
